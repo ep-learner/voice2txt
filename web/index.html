@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <title>声转文 · MP3 本地转写</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <div class="page-glow" aria-hidden="true"></div>
+  <header class="site-header">
+    <a class="brand" href="/" aria-label="声转文首页">
+      <span class="brand-mark" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M4 14v-4m4 8V6m4 13V5m4 13V6m4 8v-4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+      </span>
+      <span>声转文</span>
+    </a>
+    <span id="connectionBadge" class="privacy-badge"><span class="status-dot"></span>本地运行 · 隐私无忧</span>
+  </header>
+
+  <main>
+    <section class="hero">
+      <p class="eyebrow">LOCAL SPEECH TO TEXT</p>
+      <h1>把录音，变成文字。</h1>
+      <p>上传 MP3，在本机完成识别。复制、编辑，再下载为纯文本。</p>
+    </section>
+
+    <section class="workspace" aria-label="MP3 转写工作区">
+      <div id="errorBanner" class="error-banner" role="alert" hidden></div>
+
+      <div id="uploadPanel">
+        <input id="fileInput" class="visually-hidden" type="file" accept=".mp3,audio/mpeg" aria-label="选择 MP3 文件" tabindex="-1">
+        <div id="dropZone" class="drop-zone" role="button" tabindex="0" aria-label="选择或拖拽 MP3 文件">
+          <div class="upload-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none"><path d="M12 16V4m0 0L7 9m5-5 5 5M5 15v4a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <h2>拖拽 MP3 到这里</h2>
+          <p>或点击选择文件</p>
+          <span>仅支持 MP3 · 文件仅在本机处理</span>
+        </div>
+
+        <div id="fileInfo" class="file-info" hidden>
+          <div class="file-icon" aria-hidden="true">MP3</div>
+          <div class="file-meta">
+            <strong id="fileName"></strong>
+            <span id="fileSize"></span>
+          </div>
+          <button id="changeFileButton" class="text-button" type="button">更换文件</button>
+        </div>
+
+        <button id="startButton" class="primary-button" type="button" disabled>
+          <span>开始转写</span>
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m9 6 6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+      </div>
+
+      <div id="progressPanel" class="progress-panel" hidden aria-live="polite">
+        <div class="progress-heading">
+          <div class="loader" aria-hidden="true"></div>
+          <div>
+            <h2 id="progressPhase">准备转写…</h2>
+            <p id="progressFileName"></p>
+          </div>
+          <strong id="progressPercent">0%</strong>
+        </div>
+        <div class="progress-track" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+          <div id="progressBar" class="progress-bar"></div>
+        </div>
+        <div class="time-row">
+          <span id="elapsedTime">已用时 0 秒</span>
+          <span id="estimatedTime">正在估算剩余时间</span>
+        </div>
+        <p class="progress-note">请保持启动器和本页面打开。首次准备模型会比平时稍慢。</p>
+      </div>
+
+      <div id="resultPanel" class="result-panel" hidden>
+        <div class="result-heading">
+          <div>
+            <span class="success-label">转写完成</span>
+            <h2>你的文字已就绪</h2>
+          </div>
+          <button id="resetButton" class="secondary-button" type="button">重新转写</button>
+        </div>
+        <label class="textarea-label" for="resultText">识别结果 · 可直接编辑</label>
+        <textarea id="resultText" spellcheck="false" placeholder="未识别到文字，可尝试更清晰的音频。"></textarea>
+        <div class="result-actions">
+          <button id="copyButton" class="secondary-button" type="button">
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="8" y="8" width="11" height="11" rx="2" stroke="currentColor" stroke-width="1.8"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2" stroke="currentColor" stroke-width="1.8"/></svg>
+            <span>复制文本</span>
+          </button>
+          <button id="downloadButton" class="primary-button" type="button">
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 4v11m0 0 4-4m-4 4-4-4M5 19h14" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <span>下载 TXT</span>
+          </button>
+        </div>
+        <p id="downloadHint" class="download-hint"></p>
+      </div>
+    </section>
+
+    <div class="feature-row" aria-label="产品特点">
+      <span>本地识别</span><i></i><span id="engineLabel">faster-whisper</span><i></i><span>纯文本，无时间戳</span>
+    </div>
+  </main>
+
+  <footer>音频与文字留在你的电脑里</footer>
+  <script src="/app.js" defer></script>
+</body>
+</html>

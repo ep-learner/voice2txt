@@ -1,0 +1,59 @@
+{
+  "version": 1,
+  "dep_root": "../voice2txt-deps",
+  "paths": {
+    "runtime_dir": "runtime",
+    "model_dir": "models/faster-whisper-small",
+    "download_dir": "downloads",
+    "upgrade_dir": "upgrades",
+    "hf_cache_dir": "cache/huggingface"
+  },
+  "data": {
+    "input_dir": "data/input",
+    "output_dir": "data/output",
+    "logs_dir": "data/logs"
+  },
+  "server": {
+    "host": "127.0.0.1",
+    "port": 8765
+  },
+  "runtime": {
+    "python": "",
+    "preferred_version": "3.12"
+  },
+  "model": {
+    "name": "small",
+    "repo_id": "Systran/faster-whisper-small",
+    "revision": "main",
+    "device": "cpu",
+    "compute_type": "int8"
+  },
+  "transcribe": {
+    "language": "zh",
+    "vad_filter": true,
+    "beam_size": 5
+  },
+  "dependencies": {
+    "faster-whisper": "1.2.1",
+    "Flask": "3.1.2",
+    "av": "16.1.0"
+  },
+  "downloads": {
+    "pypi_index": "https://pypi.org/simple",
+    "pypi_api": "https://pypi.org/pypi",
+    "pypi_mirror": "https://pypi.tuna.tsinghua.edu.cn/simple",
+    "hf_endpoint": "https://huggingface.co",
+    "hf_mirror": "https://hf-mirror.com",
+    "retries": 2,
+    "timeout_seconds": 60
+  },
+  "limits": {
+    "max_upload_mb": 500,
+    "required_disk_mb": 2500,
+    "minimum_memory_mb": 2048,
+    "job_retention_seconds": 3600
+  },
+  "smoke_test": {
+    "enabled": true
+  }
+}

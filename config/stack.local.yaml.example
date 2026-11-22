@@ -1,0 +1,14 @@
+{
+  "dep_root": "../voice2txt-deps",
+  "runtime": {
+    "python": ""
+  },
+  "server": {
+    "host": "127.0.0.1",
+    "port": 8765
+  },
+  "model": {
+    "device": "cpu",
+    "compute_type": "int8"
+  }
+}

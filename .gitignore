@@ -1,0 +1,54 @@
+# 外部依赖与运行环境
+voice2txt-deps/
+runtime/
+upgrades/
+downloads/
+models/
+cache/
+.venv/
+*.exe
+*.7z
+*.zip
+
+# Python 与测试缓存
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.coverage
+htmlcov/
+
+# 模型权重与大型产物
+*.bin
+*.onnx
+*.safetensors
+*.ckpt
+*.pt
+*.pth
+
+# 用户音频、转写输出与日志
+*.mp3
+*.wav
+*.flac
+*.m4a
+*.aac
+data/input/
+data/output/
+data/logs/
+output/
+logs/
+
+# 机器私有与生成配置
+config/stack.local.yaml
+config/_env.*
+*.bak
+
+# 运行日志
+*.log
+
+# 本地 Agent、系统与编辑器记录
+.trae/
+.spec/
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
